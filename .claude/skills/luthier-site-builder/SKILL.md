@@ -205,7 +205,7 @@ Every generated site includes a small "Built with BenchMuse" attribution in the 
   transition: opacity 0.25s ease;
 }
 .built-with:hover { opacity: 0.9; }
-.built-with a { display: inline-flex; align-items: center; gap: 0.5rem; color: inherit; }
+.built-with a { display: inline-flex; align-items: center; gap: 0.5rem; color: inherit; text-decoration: none; }
 .built-with img { height: 20px; width: auto; display: block; }
 ```
 
