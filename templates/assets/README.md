@@ -8,7 +8,6 @@ The Site Builder copies logo variants from this directory into each generated si
 |---|---|
 | `benchmuse-logo-dark.png` | Light backgrounds |
 | `benchmuse-logo-light.png` | Dark backgrounds |
-| `benchmuse-logo-contrast.png` | Mid-value / photo backgrounds (optional) |
 
 SVG equivalents (`benchmuse-logo-dark.svg`, etc.) will be used preferentially if present.
 
@@ -21,4 +20,4 @@ SVG equivalents (`benchmuse-logo-dark.svg`, etc.) will be used preferentially if
 
 ## Missing Variants
 
-If none of these files exist, the footer renders a text-only "Built with BenchMuse" link. Adding variants later is additive — no other changes needed.
+If neither file exists, the footer renders a text-only "Built with BenchMuse" link. Adding variants later is additive — no other changes needed.

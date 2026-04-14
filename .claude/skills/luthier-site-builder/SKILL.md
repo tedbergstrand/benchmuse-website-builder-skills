@@ -215,7 +215,7 @@ Every generated site includes a small "Built with BenchMuse" attribution in the 
 |---|---|
 | Dark (ink, slate, warm brown) | `benchmuse-logo-light.png` (or `.svg`) |
 | Light (cream, paper, white) | `benchmuse-logo-dark.png` (or `.svg`) |
-| Mid-value / photo-backed | `benchmuse-logo-contrast.png` (or `.svg`) if present, otherwise fall back to whichever of light/dark contrasts better |
+| Mid-value / photo-backed | Pick whichever of `-dark` or `-light` contrasts better with the dominant background value |
 
 Prefer `.svg` over `.png` if both exist for a given variant — SVG scales perfectly and is usually smaller.
 
