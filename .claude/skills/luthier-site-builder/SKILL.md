@@ -186,7 +186,7 @@ Every generated site includes a small "Built with BenchMuse" attribution in the 
 <p class="built-with">
   <a href="https://benchmuse.com" rel="noopener" aria-label="Built with BenchMuse">
     <span>Built with</span>
-    <img src="./assets/benchmuse-logo-light.png" alt="" aria-hidden="true" width="72" height="24" />
+    <img src="./assets/benchmuse-logo-light.png" alt="" aria-hidden="true" width="44" height="20" />
     <span class="built-with-name">BenchMuse</span>
   </a>
 </p>

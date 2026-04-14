@@ -37,7 +37,10 @@ You chat with Claude through five skills, run in order. Each skill handles one p
 │   ├── netlify.toml               # Hosting config (copied into website/ by Site Builder)
 │   ├── luthier-profile.template.json
 │   ├── pipeline-status.template.json
-│   └── .gitignore                 # Git ignore template (optional)
+│   ├── .gitignore                 # Git ignore template (optional)
+│   └── assets/                    # BenchMuse logo variants for the footer attribution
+│       ├── benchmuse-logo-dark.png
+│       └── benchmuse-logo-light.png
 ├── luthier-profile.json           # YOUR profile (created by Step 1)
 ├── pipeline-status.json           # Pipeline progress tracker (auto-updated by skills)
 ├── handoffs/                      # Per-step handoff files (written once per skill, never overwritten)
