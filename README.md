@@ -1,4 +1,4 @@
-# Luthier Web Toolkit
+# BenchMuse Website Builder
 
 Build a professional, one-of-a-kind website for your instrument repair shop or custom building business. No templates. You own everything.
 

@@ -1,4 +1,4 @@
-# Luthier Web Toolkit
+# BenchMuse Website Builder
 
 A set of AI skills that builds bespoke websites for luthiers, guitar repair techs, and instrument builders. Every site is one-of-a-kind — never a template.
 
