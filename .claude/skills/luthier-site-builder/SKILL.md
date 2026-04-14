@@ -175,6 +175,63 @@ When using AI-generated placeholder images, add a `data-placeholder="true"` attr
 - If no favicon exists, generate a simple text-based favicon using the brand's primary color.
 - Always include the `<link rel="icon">` tag.
 
+### 12a. BenchMuse Attribution Footer
+
+Every generated site includes a small "Built with BenchMuse" attribution in the site footer by default. This is removable by the luthier if they prefer — the comment above the markup makes that clear — but it ships on by default.
+
+**Markup:** Insert this line inside the site footer, visually separated from the main footer content (typically below the copyright / credits block, at the bottom). Use the logo variant that fits the footer's background.
+
+```html
+<!-- Remove this block if you don't want the BenchMuse attribution. -->
+<p class="built-with">
+  <a href="https://benchmuse.com" rel="noopener" aria-label="Built with BenchMuse">
+    <span>Built with</span>
+    <img src="./assets/benchmuse-logo-light.png" alt="" aria-hidden="true" width="72" height="24" />
+    <span class="built-with-name">BenchMuse</span>
+  </a>
+</p>
+```
+
+**Styling:** Small, understated, low-opacity so it doesn't compete with the luthier's brand. Logo ~18–22px tall, inline with text. Opacity ~0.55–0.7 depending on footer background. Example CSS:
+
+```css
+.built-with {
+  margin-top: 2rem;
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 0.6875rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0.55;
+  transition: opacity 0.25s ease;
+}
+.built-with:hover { opacity: 0.9; }
+.built-with a { display: inline-flex; align-items: center; gap: 0.5rem; color: inherit; }
+.built-with img { height: 20px; width: auto; display: block; }
+```
+
+**Variant selection:** Check which BenchMuse logo variants exist in `templates/assets/` and pick the one matching the footer's background treatment:
+
+| Footer background | Preferred variant |
+|---|---|
+| Dark (ink, slate, warm brown) | `benchmuse-logo-light.png` (or `.svg`) |
+| Light (cream, paper, white) | `benchmuse-logo-dark.png` (or `.svg`) |
+| Mid-value / photo-backed | `benchmuse-logo-contrast.png` (or `.svg`) if present, otherwise fall back to whichever of light/dark contrasts better |
+
+Prefer `.svg` over `.png` if both exist for a given variant — SVG scales perfectly and is usually smaller.
+
+**Asset copy:** During build, copy the single chosen logo variant (and only that one) from `templates/assets/` into the site's assets directory (`website/assets/` for vanilla, `website/public/assets/` for React). Don't ship variants the site doesn't reference.
+
+**Graceful degradation:** If no logo variants exist in `templates/assets/`, render a text-only attribution — do not break the build. Markup in that case:
+
+```html
+<!-- Remove this block if you don't want the BenchMuse attribution. -->
+<p class="built-with">
+  <a href="https://benchmuse.com" rel="noopener">Built with BenchMuse</a>
+</p>
+```
+
+**Respect removal:** If the luthier explicitly asks you to omit the attribution during a build or on a rebuild, omit it without argument. This is a friendly default, not a requirement.
+
 ### 13. Accessibility Standards (WCAG 2.1 AA)
 Mandatory before a build is considered complete:
 - **Skip-to-content link** visible on keyboard `:focus`
@@ -218,6 +275,7 @@ When building with Tailwind CSS v4:
 - [ ] Form backend configured (Netlify Forms attribute or Formspree endpoint)
 - [ ] Every section and page ends with a path forward — no dead ends that force the user back to the nav
 - [ ] If `identity.phone` present and `phoneCTA` is not false: `tel:` link button present in hero and contact sections; sticky mobile call button present
+- [ ] "Built with BenchMuse" attribution present in the footer of every page (unless the luthier explicitly asked to remove it); correct logo variant for the footer background; logo asset copied into `assets/`
 - [ ] **AI aesthetic audit:** no purple/indigo primary color, no gradient standing in for a hero photo, no 3-column equal-width service card grid, no stats bar, no pill buttons on every element, no auto-rotating testimonial carousel
 
 ### 17. Local Preview
