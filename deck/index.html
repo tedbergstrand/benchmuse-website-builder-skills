@@ -3,30 +3,20 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=1280, user-scalable=no" />
-<title>BenchMuse Website Builder — presentation</title>
+<title>BenchMuse — let's get you a website</title>
 
-<!-- Reveal.js core + a minimal base theme we'll override -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/black.css" id="theme" />
 
-<!-- Fonts: Teko for display, Inter for body -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Teko:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
 <style>
-  /* -----------------------------------------------------------------
-     BenchMuse deck theme
-     palette pulled from benchmuse.com:
-       ink:    #120905
-       cream:  #F8EED9
-       rust:   #E25D24
-     ----------------------------------------------------------------- */
-
   :root {
     --ink:   #120905;
     --cream: #F8EED9;
-    --cream-dim: rgba(248, 238, 217, 0.72);
+    --cream-dim: rgba(248, 238, 217, 0.78);
     --rust:  #E25D24;
     --rust-deep: #B84713;
     --line: rgba(248, 238, 217, 0.18);
@@ -34,22 +24,15 @@
 
   html, body { background: var(--ink); }
 
-  /* Reveal theme overrides */
   .reveal {
     font-family: 'Inter', system-ui, sans-serif;
-    font-size: 28px;  /* Kawasaki 30pt minimum in spirit — body text won't go below this */
+    font-size: 36px;   /* generous — readable on Zoom, honors the Kawasaki 30pt spirit */
     color: var(--cream);
   }
-  .reveal .slides {
-    text-align: left;
-  }
-  .reveal .slides section {
-    padding: 0 !important;
-    height: 100%;
-  }
-  .reveal h1,
-  .reveal h2,
-  .reveal h3 {
+  .reveal .slides { text-align: left; }
+  .reveal .slides section { padding: 0 !important; height: 100%; }
+
+  .reveal h1, .reveal h2, .reveal h3 {
     font-family: 'Teko', sans-serif;
     color: var(--cream);
     font-weight: 700;
@@ -59,26 +42,28 @@
     margin: 0;
     text-shadow: none;
   }
-  .reveal h1 { font-size: 8rem; }
-  .reveal h2 { font-size: 5.5rem; }
-  .reveal h3 { font-size: 3rem; }
-  .reveal p, .reveal li { color: var(--cream); line-height: 1.5; }
-  .reveal a { color: var(--rust); text-decoration: none; }
-  .reveal em { color: var(--rust); font-style: italic; }
+  .reveal h1 { font-size: 9rem; }
+  .reveal h2 { font-size: 6rem; }
+  .reveal h3 { font-size: 2.5rem; letter-spacing: 0.005em; line-height: 1; }
+  .reveal p, .reveal li {
+    color: var(--cream);
+    line-height: 1.45;
+    font-size: 1.3rem;
+  }
   .reveal strong { color: var(--rust); font-weight: 600; }
+  .reveal em { color: var(--rust); font-style: italic; }
 
-  /* Shared slide shell */
   .slide {
     position: absolute;
     inset: 0;
-    padding: 5vh 8vw;
+    padding: 7vh 8vw 8vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
   }
   .slide--rosewood {
     background:
-      linear-gradient(rgba(18, 9, 5, 0.65), rgba(18, 9, 5, 0.78)),
+      linear-gradient(rgba(18, 9, 5, 0.70), rgba(18, 9, 5, 0.82)),
       url('./assets/rosewood.png');
     background-size: cover, 800px;
     background-position: center, center;
@@ -86,56 +71,56 @@
   }
   .slide--spruce {
     background:
-      linear-gradient(rgba(18, 9, 5, 0.05), rgba(18, 9, 5, 0.12)),
+      linear-gradient(rgba(18, 9, 5, 0.04), rgba(18, 9, 5, 0.10)),
       url('./assets/spruce.png');
     background-size: cover, 800px;
     background-position: center, center;
     background-repeat: no-repeat, repeat;
     color: var(--ink);
   }
-  .slide--spruce h1,
-  .slide--spruce h2,
-  .slide--spruce h3 { color: var(--ink); }
-  .slide--spruce .eyebrow { color: var(--rust-deep); }
+  .slide--spruce h1, .slide--spruce h2, .slide--spruce h3 { color: var(--ink); }
   .slide--spruce p, .slide--spruce li { color: var(--ink); }
-  .slide--spruce .footer,
-  .slide--spruce .footer span { color: rgba(18, 9, 5, 0.7); border-color: rgba(18, 9, 5, 0.2); }
-
-  .slide--ink {
-    background: var(--ink);
+  .slide--spruce .footer, .slide--spruce .footer span {
+    color: rgba(18, 9, 5, 0.65);
+    border-color: rgba(18, 9, 5, 0.2);
   }
 
-  /* Eyebrow + headline rhythm */
-  .eyebrow {
+  /* conversational, not eyebrow-y */
+  .overline {
     font-family: 'Inter', sans-serif;
-    font-weight: 700;
-    font-size: 1.05rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 1.1rem;
     color: var(--rust);
-    margin-bottom: 2rem;
-    display: inline-flex;
-    align-items: center;
-    gap: 1.25rem;
-  }
-  .eyebrow::before {
-    content: "";
-    width: 3rem;
-    height: 2px;
-    background: var(--rust);
-    display: inline-block;
+    margin-bottom: 1.5rem;
   }
 
-  .lede {
+  /* main body block */
+  .body-text {
     font-size: 1.5rem;
     line-height: 1.55;
-    max-width: 56ch;
+    max-width: 28ch;
     color: var(--cream);
     margin-top: 2.5rem;
   }
-  .lede--dim { color: var(--cream-dim); }
+  .body-text--wide { max-width: 40ch; }
 
-  /* Tiny footer on every slide with deck metadata */
+  /* a useful pattern: heading + a short list of plain-english points */
+  .points {
+    margin-top: 2.5rem;
+    list-style: none;
+    padding: 0;
+    max-width: 50ch;
+  }
+  .points li {
+    font-size: 1.5rem;
+    line-height: 1.5;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .points li:last-child { border-bottom: 0; }
+  .points li strong { color: var(--rust); font-weight: 600; }
+
+  /* footer */
   .footer {
     position: absolute;
     left: 8vw;
@@ -145,220 +130,119 @@
     justify-content: space-between;
     align-items: center;
     font-family: 'Inter', sans-serif;
-    font-size: 0.7rem;
-    letter-spacing: 0.18em;
+    font-size: 0.85rem;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
     color: var(--cream-dim);
     border-top: 1px solid var(--line);
-    padding-top: 1rem;
+    padding-top: 0.75rem;
   }
-  .footer .brand {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.75rem;
-  }
-  .footer .brand img { height: 20px; width: auto; display: block; }
+  .footer .brand { display: inline-flex; align-items: center; gap: 0.75rem; }
+  .footer .brand img { height: 22px; width: auto; display: block; }
 
-  /* Title slide specific */
-  .title-wrap {
-    text-align: center;
-  }
+  /* title slide */
+  .title-wrap { text-align: center; }
   .title-wrap h1 {
-    font-size: clamp(8rem, 16vw, 16rem);
+    font-size: clamp(10rem, 18vw, 18rem);
     letter-spacing: -0.03em;
     line-height: 0.85;
   }
   .title-wrap .tagline {
     color: var(--rust);
     font-family: 'Inter', sans-serif;
-    font-weight: 700;
-    font-size: 1.2rem;
-    letter-spacing: 0.28em;
-    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 1.5rem;
     margin-top: 2rem;
-  }
-  .title-wrap .subtitle {
-    color: var(--cream-dim);
-    font-size: 1.25rem;
-    margin-top: 1.5rem;
-    max-width: 60ch;
-    margin-left: auto;
-    margin-right: auto;
-    line-height: 1.5;
   }
   .title-wrap .presenter {
-    margin-top: 5rem;
+    margin-top: 4rem;
     color: var(--cream-dim);
     font-family: 'Inter', sans-serif;
     font-weight: 500;
-    font-size: 0.95rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
+    font-size: 1.1rem;
   }
 
-  /* Pipeline visual for "how it works" */
-  .pipeline {
+  /* pipeline list for "the five steps" */
+  .steps {
+    list-style: none;
+    padding: 0;
+    margin: 2.5rem 0 0;
+    max-width: 42rem;
+  }
+  .steps li {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 1.25rem;
-    margin-top: 3rem;
-  }
-  .pipeline .step {
-    border-top: 2px solid var(--rust);
-    padding-top: 1.25rem;
-  }
-  .pipeline .step .num {
-    font-family: 'Teko', sans-serif;
-    font-size: 3rem;
-    font-weight: 600;
-    line-height: 0.9;
-    color: var(--rust);
-  }
-  .pipeline .step .title {
-    font-family: 'Teko', sans-serif;
-    font-weight: 600;
-    font-size: 1.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.005em;
-    line-height: 1;
-    margin: 0.5rem 0 0.75rem;
-    color: var(--cream);
-  }
-  .pipeline .step .desc {
-    font-size: 0.85rem;
-    line-height: 1.45;
-    color: var(--cream-dim);
-  }
-
-  /* Three-column layout for audience / cost / options */
-  .three-col {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2.5rem;
-    margin-top: 3rem;
-  }
-  .three-col .col {
-    border-top: 2px solid var(--rust);
-    padding-top: 1.5rem;
-  }
-  .three-col .col h3 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-    color: var(--cream);
-  }
-  .three-col .col p {
-    font-size: 1rem;
-    line-height: 1.55;
-    color: var(--cream-dim);
-  }
-
-  /* Cost breakdown */
-  .cost-table {
-    display: grid;
-    grid-template-columns: auto 1fr auto;
-    gap: 1.5rem 2rem;
-    margin-top: 2.5rem;
-    max-width: 46rem;
-  }
-  .cost-table .label {
-    font-family: 'Teko', sans-serif;
-    font-weight: 600;
-    font-size: 1.6rem;
-    text-transform: uppercase;
-    letter-spacing: 0.005em;
-    color: var(--cream);
-    line-height: 1.1;
-  }
-  .cost-table .note {
-    font-size: 0.95rem;
-    color: var(--cream-dim);
-    line-height: 1.4;
-  }
-  .cost-table .num {
-    font-family: 'Teko', sans-serif;
-    font-weight: 700;
-    font-size: 2rem;
-    color: var(--rust);
-    text-align: right;
-    white-space: nowrap;
-    line-height: 1;
-  }
-
-  /* Screenshot slide */
-  .screenshot-frame {
-    margin-top: 2rem;
-    border: 1px solid var(--line);
-    max-height: 72vh;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: auto;
-    height: auto;
-    max-width: 100%;
-    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
-  }
-  .screenshot-caption {
-    font-family: 'Inter', sans-serif;
-    font-size: 1rem;
-    font-weight: 500;
-    letter-spacing: 0.04em;
-    margin: 0.5rem 0 1.25rem;
-    color: var(--cream-dim);
-    max-width: 60ch;
-  }
-
-  /* Options list (getting started slide) */
-  .options {
-    margin-top: 3rem;
-    display: grid;
+    grid-template-columns: 4rem 1fr;
     gap: 1.5rem;
-  }
-  .options .option {
-    display: grid;
-    grid-template-columns: 3rem 1fr;
-    gap: 1.5rem;
-    align-items: start;
-    padding-bottom: 1.25rem;
+    padding: 1.2rem 0;
     border-bottom: 1px solid var(--line);
+    align-items: baseline;
   }
-  .options .option:last-child { border-bottom: 0; }
-  .options .option .tag {
+  .steps li:last-child { border-bottom: 0; }
+  .steps li .n {
     font-family: 'Teko', sans-serif;
-    font-size: 2.5rem;
     font-weight: 700;
     color: var(--rust);
-    line-height: 0.9;
-  }
-  .options .option .body h4 {
-    font-family: 'Teko', sans-serif;
-    font-weight: 600;
-    font-size: 1.8rem;
-    text-transform: uppercase;
-    letter-spacing: 0.005em;
-    color: var(--cream);
-    margin: 0 0 0.35rem;
+    font-size: 2.5rem;
     line-height: 1;
   }
-  .options .option .body p {
-    font-size: 0.95rem;
-    color: var(--cream-dim);
-    line-height: 1.5;
-    margin: 0;
+  .steps li .what {
+    font-size: 1.4rem;
+    line-height: 1.45;
+  }
+  .steps li .what b {
+    font-family: 'Teko', sans-serif;
+    font-weight: 600;
+    font-size: 1.9rem;
+    letter-spacing: 0.005em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 0.3rem;
+    color: var(--cream);
   }
 
-  /* The final CTA slide */
+  /* screenshot slide */
+  .screenshot-frame {
+    margin: 2rem auto 0;
+    max-height: 70vh;
+    max-width: 100%;
+    display: block;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.55);
+    border: 1px solid var(--line);
+  }
+
+  /* split layout for Claude vs you */
+  .split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    margin-top: 2.5rem;
+  }
+  .split .col h3 { color: var(--rust); margin-bottom: 1rem; }
+  .split .col p { font-size: 1.35rem; line-height: 1.5; }
+
+  /* CTA slide */
   .cta-wrap { text-align: center; }
   .cta-wrap h1 {
-    font-size: clamp(5rem, 11vw, 11rem);
+    font-size: clamp(6rem, 12vw, 12rem);
     letter-spacing: -0.025em;
+    line-height: 0.88;
+  }
+  .cta-wrap .sub {
+    font-size: 1.5rem;
+    color: var(--ink);
+    margin-top: 2.5rem;
+    max-width: 36ch;
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: 500;
   }
   .cta-wrap .cta {
     display: inline-block;
-    background: var(--rust);
+    background: var(--ink);
     color: var(--cream);
     font-family: 'Teko', sans-serif;
     font-weight: 600;
-    font-size: 2.25rem;
+    font-size: 2.5rem;
     text-transform: uppercase;
     letter-spacing: 0.06em;
     padding: 1rem 2.5rem;
@@ -368,29 +252,37 @@
   .cta-wrap .url {
     font-family: 'Inter', sans-serif;
     font-weight: 500;
-    font-size: 1.05rem;
-    letter-spacing: 0.08em;
-    color: var(--rust-deep);
+    font-size: 1.15rem;
+    color: rgba(18, 9, 5, 0.7);
     margin-top: 2rem;
     word-break: break-all;
   }
   .cta-wrap .thanks {
-    margin-top: 4rem;
-    font-family: 'Inter', sans-serif;
+    margin-top: 3rem;
     font-weight: 500;
-    font-size: 0.95rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: rgba(18, 9, 5, 0.6);
+    font-size: 1.1rem;
+    color: rgba(18, 9, 5, 0.65);
   }
 
-  /* Presenter notes utility — only visible in Reveal speaker mode */
-  /* (Reveal handles this automatically via the aside element.) */
+  /* quote-ish callout (used on one slide) */
+  .quote {
+    font-family: 'Teko', sans-serif;
+    font-weight: 600;
+    font-size: 4.5rem;
+    line-height: 0.95;
+    letter-spacing: 0.005em;
+    text-transform: uppercase;
+    color: var(--cream);
+    margin: 0;
+  }
+  .quote + .attribution {
+    font-size: 1.2rem;
+    color: var(--cream-dim);
+    margin-top: 1.5rem;
+  }
 
-  /* Progress bar tint */
+  /* progress tint */
   .reveal .progress { color: var(--rust); }
-
-  /* Slide-number style */
   .reveal .slide-number {
     font-family: 'Inter', sans-serif;
     letter-spacing: 0.18em;
@@ -404,287 +296,240 @@
 <div class="reveal">
   <div class="slides">
 
-    <!-- ==== 1. TITLE ==== -->
+    <!-- ==== 1. HI ==== -->
     <section>
       <div class="slide slide--rosewood">
         <div class="title-wrap" style="margin: auto 0;">
           <h1>BenchMuse</h1>
-          <div class="tagline">Website Builder</div>
-          <p class="subtitle">
-            A conversational AI toolkit that builds bespoke websites for luthiers and repair shops.
-            No templates. No monthly fees. You own the code.
-          </p>
-          <div class="presenter">
-            Ted Bergstrand · BenchMuse
-          </div>
+          <div class="tagline">Let's get you a website.</div>
+          <div class="presenter">Ted Bergstrand</div>
         </div>
         <div class="footer">
           <span class="brand"><img src="./assets/benchmuse-logo.png" alt="" /></span>
-          <span>01 &middot; Title</span>
+          <span>01</span>
         </div>
       </div>
       <aside class="notes">
-        Warm up the room — these are friends. Skip the hard-sell voice, speak like you're at a guild meeting.
-        Mention: this isn't a product I built in isolation, it came out of trying to help folks like Jerry get a site that feels like their shop, not a Squarespace template.
+        Hey, thanks for coming. I've been working on something that I think will help a lot of you.
+        This is not a sales pitch — I'm not selling anything. It's free. I built it because I got tired of watching friends get pushed into Squarespace or paying thousands for a site they don't love.
       </aside>
     </section>
 
-    <!-- ==== 2. THE PROBLEM ==== -->
+    <!-- ==== 2. WHAT YOU'LL END UP WITH ==== -->
+    <section>
+      <div class="slide slide--rosewood" style="justify-content: flex-start; padding-top: 10vh;">
+        <div class="overline">Here's what you'll end up with</div>
+        <img src="./assets/example-site.jpg" alt="Example generated site" class="screenshot-frame" />
+        <div class="footer">
+          <span class="brand"><img src="./assets/benchmuse-logo.png" alt="" /> BenchMuse</span>
+          <span>02</span>
+        </div>
+      </div>
+      <aside class="notes">
+        This is a real site we built during testing. Your site won't look like this one — it'll look like YOUR shop. Different photos, different colors, different words. That's the point.
+        If this were a Squarespace template, every shop using it would look similar. This doesn't work like that.
+      </aside>
+    </section>
+
+    <!-- ==== 3. WHAT YOU NEED ==== -->
     <section>
       <div class="slide slide--rosewood">
-        <span class="eyebrow">The problem</span>
-        <h2>Most luthier sites<br/>look the same.</h2>
-        <p class="lede">
-          Squarespace and Wix templates make every shop interchangeable. An agency build runs three to
-          eight grand. DIY options lock you into their editor forever. You end up with a site that
-          doesn't feel like your bench — just a page that happens to mention your name.
+        <div class="overline">What you actually need</div>
+        <ul class="points">
+          <li><strong>A computer.</strong> Mac or Windows, doesn't matter.</li>
+          <li><strong>Claude Code.</strong> Free to download, $20/month to use. Cancel when you're done.</li>
+          <li><strong>A Netlify account.</strong> Free. This is where your site will live.</li>
+          <li><strong>Maybe an hour.</strong> More if you want. You can stop and come back.</li>
+          <li><strong>Some photos.</strong> iPhone photos are fine. Ten or so.</li>
+        </ul>
+        <div class="footer">
+          <span class="brand"><img src="./assets/benchmuse-logo.png" alt="" /> BenchMuse</span>
+          <span>03</span>
+        </div>
+      </div>
+      <aside class="notes">
+        I'll put links to everything in the chat. Nothing on this list is hard to get — Claude and Netlify both take about two minutes to sign up for.
+        The $20 is the only cost. That's for Claude. The AI is what actually builds the site. Cancel it the month you're done. Re-subscribe when you want changes.
+      </aside>
+    </section>
+
+    <!-- ==== 4. HOW THIS ACTUALLY WORKS ==== -->
+    <section>
+      <div class="slide slide--rosewood">
+        <div class="overline">How this actually works</div>
+        <h2>You answer<br/>some questions.</h2>
+        <p class="body-text body-text--wide">
+          Claude asks about your shop — what you do, what you charge, your story. You answer
+          the way you'd answer a friend over beers. Claude takes what you said and builds a site around it.
+        </p>
+        <p class="body-text body-text--wide" style="margin-top: 1.5rem;">
+          That's the whole trick. No code. No design software. No templates.
         </p>
         <div class="footer">
           <span class="brand"><img src="./assets/benchmuse-logo.png" alt="" /> BenchMuse</span>
-          <span>02 &middot; The problem</span>
+          <span>04</span>
         </div>
       </div>
       <aside class="notes">
-        Ask the room: how many of you have a website right now? How many of you actually like it?
-        The pain is real: most of you are either on Squarespace paying $20/mo for a template, or you've been meaning to "get around to it" for two years.
+        This is the part that trips people up — "AI builds your website" sounds like some sci-fi thing. It isn't. You're literally just answering questions in a chat window. The AI turns your answers into a site.
+        Think of it like texting your nephew who happens to do web design for a living. Except your nephew responds instantly and doesn't charge you.
       </aside>
     </section>
 
-    <!-- ==== 3. WHAT IT IS ==== -->
+    <!-- ==== 5. THE 5 STEPS ==== -->
     <section>
       <div class="slide slide--rosewood">
-        <span class="eyebrow">What it is</span>
-        <h2>Talk to Claude.<br/>Get a site.</h2>
-        <p class="lede">
-          BenchMuse is five conversational AI skills that interview you about your shop, design from
-          <em>your</em> photos and story, write the code, and hand you a deployable folder.
-          It's not a template picker. It's an experienced web designer who asks good questions
-          and then gets out of your way.
+        <div class="overline">The five steps</div>
+        <h2>In order.</h2>
+        <ol class="steps">
+          <li>
+            <span class="n">1</span>
+            <span class="what"><b>Interview</b>Claude asks about your shop. About 20 minutes.</span>
+          </li>
+          <li>
+            <span class="n">2</span>
+            <span class="what"><b>Design direction</b>Claude looks at your photos, picks colors and fonts, shows you the plan.</span>
+          </li>
+          <li>
+            <span class="n">3</span>
+            <span class="what"><b>Photos</b>Claude sorts them, shrinks them, writes descriptions.</span>
+          </li>
+          <li>
+            <span class="n">4</span>
+            <span class="what"><b>Build</b>Claude writes the site. You see it live in your browser.</span>
+          </li>
+          <li>
+            <span class="n">5</span>
+            <span class="what"><b>Make it findable</b>Claude adds the Google-friendly bits automatically.</span>
+          </li>
+        </ol>
+        <div class="footer">
+          <span class="brand"><img src="./assets/benchmuse-logo.png" alt="" /> BenchMuse</span>
+          <span>05</span>
+        </div>
+      </div>
+      <aside class="notes">
+        You do these in order. Each one takes 5–30 minutes. You can stop between any of them and come back — Claude remembers where you were.
+        You tell it to start each step by typing one thing. I'll show you the exact thing in a minute.
+      </aside>
+    </section>
+
+    <!-- ==== 6. PHOTOS ==== -->
+    <section>
+      <div class="slide slide--rosewood">
+        <div class="overline">Your photos</div>
+        <h2>iPhone is fine.</h2>
+        <p class="body-text body-text--wide">
+          Ten or fifteen photos is plenty. Your bench. A couple of guitars you're proud of.
+          One or two of you at work. A shot of the shop. Before-and-after of a repair you like.
+        </p>
+        <p class="body-text body-text--wide" style="margin-top: 1.5rem;">
+          Don't overthink this. If you don't have photos yet, Claude will use placeholder
+          images and you can swap in yours later.
         </p>
         <div class="footer">
           <span class="brand"><img src="./assets/benchmuse-logo.png" alt="" /> BenchMuse</span>
-          <span>03 &middot; What it is</span>
+          <span>06</span>
         </div>
       </div>
       <aside class="notes">
-        The key distinction: templates ask you to pick from a menu. BenchMuse asks you about your shop and designs a one-of-a-kind site from your answers.
-        Think of it as hiring a web designer for $20 instead of $5,000.
+        Seriously — don't hire a photographer for this. Phone photos look great on a website. Natural light, decent framing, you're done.
+        If you really have nothing, Claude can use licensed workshop photos as placeholders. Your site will still look good and you can swap in real photos any time.
       </aside>
     </section>
 
-    <!-- ==== 4. HOW IT WORKS ==== -->
+    <!-- ==== 7. WHEN YOU DON'T LIKE IT ==== -->
     <section>
       <div class="slide slide--rosewood">
-        <span class="eyebrow">How it works</span>
-        <h2>Five steps.<br/>One folder.</h2>
-
-        <div class="pipeline">
-          <div class="step">
-            <div class="num">01</div>
-            <div class="title">Interview</div>
-            <div class="desc">~20 minute conversation about your shop, services, voice, and story.</div>
-          </div>
-          <div class="step">
-            <div class="num">02</div>
-            <div class="title">Design</div>
-            <div class="desc">Claude analyzes your photos and any references, picks a palette and typography, confirms direction with you.</div>
-          </div>
-          <div class="step">
-            <div class="num">03</div>
-            <div class="title">Curate</div>
-            <div class="desc">Your photos get sorted, optimized, and assigned to pages with SEO alt tags.</div>
-          </div>
-          <div class="step">
-            <div class="num">04</div>
-            <div class="title">Build</div>
-            <div class="desc">Claude writes the HTML, CSS, and JavaScript. You review a live preview in your browser.</div>
-          </div>
-          <div class="step">
-            <div class="num">05</div>
-            <div class="title">SEO</div>
-            <div class="desc">Meta tags, schema, sitemap, and a file so ChatGPT can accurately describe your shop.</div>
-          </div>
-        </div>
-
-        <div class="footer">
-          <span class="brand"><img src="./assets/benchmuse-logo.png" alt="" /> BenchMuse</span>
-          <span>04 &middot; How it works</span>
-        </div>
-      </div>
-      <aside class="notes">
-        Emphasize: you can stop and come back any time. Each step writes a handoff file, so if you run out of time on a Tuesday night, picking up Saturday morning is seamless.
-      </aside>
-    </section>
-
-    <!-- ==== 5. LIVE EXAMPLE ==== -->
-    <section>
-      <div class="slide slide--rosewood" style="justify-content: flex-start; padding-top: 6vh;">
-        <span class="eyebrow">What you get</span>
-        <p class="screenshot-caption">Example site, generated from ~30 minutes of conversation and ~10 photos.</p>
-        <img src="./assets/example-site.jpg" alt="Example site" class="screenshot-frame" />
-        <div class="footer">
-          <span class="brand"><img src="./assets/benchmuse-logo.png" alt="" /> BenchMuse</span>
-          <span>05 &middot; Example</span>
-        </div>
-      </div>
-      <aside class="notes">
-        If time allows, actually share screen and show the generated site in a browser. Scroll through.
-        Call out: this came from about 10 photos the luthier took on their phone, 20 minutes of conversation, and zero templates.
-        Point out a couple of details: the typography choice, the color palette pulled from the photos, the service list that reads like a rate sheet.
-      </aside>
-    </section>
-
-    <!-- ==== 6. COST ==== -->
-    <section>
-      <div class="slide slide--rosewood">
-        <span class="eyebrow">What it costs</span>
-        <h2>Twenty dollars<br/>while you're building.</h2>
-
-        <div class="cost-table">
-          <div class="label">Claude Code</div>
-          <div class="note">The AI that builds the site. Cancel the month you're done. Re-subscribe when you want to update.</div>
-          <div class="num">$20&thinsp;/&thinsp;mo</div>
-
-          <div class="label">Hosting</div>
-          <div class="note">Netlify's free tier. Handles ~50&ndash;100k page views a month.</div>
-          <div class="num">$0</div>
-
-          <div class="label">Domain</div>
-          <div class="note">yourshop.com, renewed yearly.</div>
-          <div class="num">~$15&thinsp;/&thinsp;yr</div>
-        </div>
-
-        <div class="footer">
-          <span class="brand"><img src="./assets/benchmuse-logo.png" alt="" /> BenchMuse</span>
-          <span>06 &middot; Cost</span>
-        </div>
-      </div>
-      <aside class="notes">
-        Most people build in two or three sessions. So real-world out-of-pocket: $20 one month, $15 a year for the domain, done. Less than what you're paying Squarespace for three months of generic.
-      </aside>
-    </section>
-
-    <!-- ==== 7. OWNERSHIP / WHY DIFFERENT ==== -->
-    <section>
-      <div class="slide slide--rosewood">
-        <span class="eyebrow">What you own</span>
-        <h2>Every line of code<br/>is yours.</h2>
-        <p class="lede">
-          When Claude finishes, you have a folder of files on your computer. HTML, CSS, JavaScript,
-          your photos. Deploy it to Netlify. Deploy it to anywhere else. Hand it to a developer if
-          you outgrow it. Keep working on it yourself. <em>Nobody can turn it off.</em>
-        </p>
-        <p class="lede lede--dim" style="margin-top: 1.5rem;">
-          No subscription to your website. No editor you're locked into. No platform that raises prices next year. The files are yours the way a guitar is yours after you bought it.
+        <div class="overline">When you don't like something</div>
+        <h2>Tell Claude.<br/>It fixes it.</h2>
+        <p class="body-text body-text--wide">
+          "Make the hero smaller." "The green looks muddy — try a warmer color."
+          "I hate this font." "Add a page for my YouTube channel." You just say it.
+          Claude changes the site and you look at it again.
         </p>
         <div class="footer">
           <span class="brand"><img src="./assets/benchmuse-logo.png" alt="" /> BenchMuse</span>
-          <span>07 &middot; Ownership</span>
+          <span>07</span>
         </div>
       </div>
       <aside class="notes">
-        This is the thing Squarespace, Wix, etc. never let you have. Your site lives on their servers, in their editor, in their format. If they raise prices or shut down, so does your site.
-        BenchMuse hands you a folder. That folder is a regular website. You own it the way you own any file on your computer.
+        This is the part I wish someone had told me about AI tools a year ago. You don't have to know how to describe things in technical terms. "I don't like the vibe" is a valid instruction. Claude figures out what you mean and tries something different. If you still don't like it, try again.
+        Don't be precious about getting it right on the first pass. The whole thing is built to iterate.
       </aside>
     </section>
 
-    <!-- ==== 8. WHO IT'S FOR ==== -->
+    <!-- ==== 8. DEPLOY ==== -->
     <section>
       <div class="slide slide--rosewood">
-        <span class="eyebrow">Who it's for</span>
-        <h2>Builders. Repair techs.<br/>Both.</h2>
-
-        <div class="three-col">
-          <div class="col">
-            <h3>Builders</h3>
-            <p>
-              Portfolio-forward sites with build logs, materials, commission workflow, and room to tell the story of a 300-hour instrument.
-            </p>
-          </div>
-          <div class="col">
-            <h3>Repair techs</h3>
-            <p>
-              Service-forward sites with clear pricing, intake forms, before/after galleries, and tap-to-call buttons that actually convert.
-            </p>
-          </div>
-          <div class="col">
-            <h3>Hybrid shops</h3>
-            <p>
-              Both sides of the business, clearly separated, under one unified brand. The pipeline adapts to which kind of shop you run.
-            </p>
-          </div>
-        </div>
-
+        <div class="overline">Putting it on the internet</div>
+        <h2>Drag a folder.<br/>That's it.</h2>
+        <p class="body-text body-text--wide">
+          When the site is done, you'll have a folder on your computer called <em>website</em>.
+          You go to Netlify in your browser, drag that folder onto the page, and your site is live.
+          Took me about 40 seconds the first time.
+        </p>
+        <p class="body-text body-text--wide" style="margin-top: 1.5rem;">
+          Your domain (yourshop.com) gets pointed at Netlify in two clicks. Done.
+        </p>
         <div class="footer">
           <span class="brand"><img src="./assets/benchmuse-logo.png" alt="" /> BenchMuse</span>
-          <span>08 &middot; Who it's for</span>
+          <span>08</span>
         </div>
       </div>
       <aside class="notes">
-        If you're any of the above, the interview step automatically bends toward what your type of shop needs. Hybrids are the trickiest case, but that's exactly the case I built this for.
+        If you can drag a file into your email, you can deploy a website on Netlify. That's not hyperbole — the interface is just a big rectangle that says "drag your folder here."
+        Netlify also handles the HTTPS (that's the little lock icon in the URL bar) for you automatically. No fiddling.
       </aside>
     </section>
 
-    <!-- ==== 9. GETTING STARTED ==== -->
+    <!-- ==== 9. GETTING IT ONTO YOUR COMPUTER ==== -->
     <section>
       <div class="slide slide--rosewood">
-        <span class="eyebrow">How to start</span>
-        <h2>Three ways in.</h2>
-
-        <div class="options">
-          <div class="option">
-            <div class="tag">A</div>
-            <div class="body">
-              <h4>Download a ZIP</h4>
-              <p>Zero accounts, zero command line. Click the green "Code" button on the repo, hit "Download ZIP," unzip it to your Desktop. Open in Claude Code. Done.</p>
-            </div>
-          </div>
-          <div class="option">
-            <div class="tag">B</div>
-            <div class="body">
-              <h4>GitHub Desktop</h4>
-              <p>Free GUI app from desktop.github.com. Clones the repo in one click and gives you "Fetch / Pull" for painless updates as BenchMuse improves.</p>
-            </div>
-          </div>
-          <div class="option">
-            <div class="tag">C</div>
-            <div class="body">
-              <h4>git clone</h4>
-              <p>If you already know what that means, you already know what to do.</p>
-            </div>
-          </div>
-        </div>
-
+        <div class="overline">Getting this on your computer</div>
+        <h2>Download a ZIP.</h2>
+        <p class="body-text body-text--wide">
+          Go to the link on the next slide. On that page you'll see a green button that says
+          <em>Code</em>. Click it, then click <em>Download ZIP</em>. Unzip it. Put the folder
+          somewhere you'll remember. That's step zero.
+        </p>
+        <p class="body-text body-text--wide" style="margin-top: 1.5rem;">
+          If you want something fancier, there's a GitHub Desktop option that makes updates
+          easier — but the ZIP is fine to start.
+        </p>
         <div class="footer">
           <span class="brand"><img src="./assets/benchmuse-logo.png" alt="" /> BenchMuse</span>
-          <span>09 &middot; Getting started</span>
+          <span>09</span>
         </div>
       </div>
       <aside class="notes">
-        Pick A if this is your first rodeo. Pick B if you want updates without thinking. Pick C if you already use git. Zero shame in picking A.
+        I know "GitHub" sounds scary. It's literally just where the files live. You don't need an account, you don't need to understand git, you just click "Download ZIP."
+        After you open the folder in Claude Code, you type /luthier-interviewer to start. That's the first thing. I'll leave that on the next slide.
       </aside>
     </section>
 
-    <!-- ==== 10. CLOSE / CTA ==== -->
+    <!-- ==== 10. LET'S DO THIS ==== -->
     <section>
       <div class="slide slide--spruce">
         <div class="cta-wrap" style="margin: auto 0;">
-          <span class="eyebrow" style="color: var(--rust-deep);">Your turn</span>
-          <h1 style="color: var(--ink);">Let's build<br/>your site.</h1>
-          <div style="margin-top: 3rem; display: inline-block;">
-            <a class="cta" href="https://github.com/tedbergstrand/benchmuse-website-builder-skills">Open the repo →</a>
+          <h1>Let's do this.</h1>
+          <p class="sub">
+            Grab the files. Open them in Claude Code. Say hi. Claude takes it from there.
+          </p>
+          <div style="margin-top: 2rem;">
+            <a class="cta" href="https://github.com/tedbergstrand/benchmuse-website-builder-skills">Grab the files →</a>
           </div>
           <div class="url">github.com/tedbergstrand/benchmuse-website-builder-skills</div>
-          <div class="thanks">Thanks for watching · questions?</div>
+          <div class="thanks">I'm around if you get stuck. Seriously — text me.</div>
         </div>
         <div class="footer">
-          <span class="brand">BenchMuse Website Builder</span>
-          <span>10 &middot; Your turn</span>
+          <span class="brand">BenchMuse</span>
+          <span>10</span>
         </div>
       </div>
       <aside class="notes">
-        Open it up for questions. Offer to walk anyone through their first run after the call.
-        If someone says "I'm in, what do I do right now?" — send them the repo URL and tell them to hit the green Code button.
+        Any questions? I'll stick around after we wrap.
+        Most of you will be able to knock the first site out in an evening. If you get stuck — and you will at least once — text me or hit me up in the group chat. I'd rather answer the same question fifteen times than have any of you give up.
       </aside>
     </section>
 
