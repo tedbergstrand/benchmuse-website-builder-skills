@@ -16,7 +16,8 @@
   :root {
     --ink:   #120905;
     --cream: #F8EED9;
-    --cream-dim: rgba(248, 238, 217, 0.78);
+    --cream-dim: rgba(248, 238, 217, 0.72);
+    --cream-faint: rgba(248, 238, 217, 0.5);
     --rust:  #E25D24;
     --rust-deep: #B84713;
     --line: rgba(248, 238, 217, 0.18);
@@ -32,26 +33,17 @@
   .reveal .slides { text-align: left; }
   .reveal .slides section { padding: 0 !important; height: 100%; }
 
-  .reveal h1, .reveal h2, .reveal h3 {
+  .reveal h1 {
     font-family: 'Teko', sans-serif;
-    color: var(--cream);
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: -0.015em;
     line-height: 0.88;
+    color: var(--cream);
     margin: 0;
     text-shadow: none;
   }
-  .reveal h1 { font-size: 11rem; }
-  .reveal h2 { font-size: 7rem; }
-  .reveal h3 { font-size: 3rem; letter-spacing: 0.005em; line-height: 1; }
-  .reveal p, .reveal li {
-    color: var(--cream);
-    line-height: 1.4;
-    font-size: 1.4rem;
-  }
-  .reveal strong { color: var(--rust); font-weight: 600; }
-  .reveal em { color: var(--rust); font-style: normal; }
+  .reveal h1 { font-size: 12rem; }
 
   .slide {
     position: absolute;
@@ -59,7 +51,6 @@
     padding: 7vh 7vw 8vh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
   }
   .slide--rosewood {
     background:
@@ -78,79 +69,197 @@
     background-repeat: no-repeat, repeat;
     color: var(--ink);
   }
-  .slide--spruce h1, .slide--spruce h2, .slide--spruce h3 { color: var(--ink); }
-  .slide--spruce p, .slide--spruce li { color: var(--ink); }
-  .slide--spruce .overline { color: var(--rust-deep); }
+  .slide--spruce h1 { color: var(--ink); }
   .slide--spruce .footer, .slide--spruce .footer span {
     color: rgba(18, 9, 5, 0.65);
     border-color: rgba(18, 9, 5, 0.22);
   }
 
-  .slide--centered {
-    align-items: center;
-    text-align: center;
-  }
-
-  /* Section label used on slides where the headline alone doesn't set context.
-     Sized so it registers as a real label, not decoration. */
-  .overline {
+  /* Section header — the "chapter" title at the top of each content slide */
+  .section-header {
     font-family: 'Teko', sans-serif;
     font-weight: 600;
-    font-size: 2.2rem;
     text-transform: uppercase;
     letter-spacing: 0.01em;
-    color: var(--cream-dim);
-    margin-bottom: 1.25rem;
-    padding-bottom: 1rem;
-    border-bottom: 2px solid var(--rust);
-    display: inline-block;
     line-height: 1;
-  }
-  .slide--centered .overline { display: inline-block; }
-
-  /* Wide body text — fills the slide instead of hugging the left margin */
-  .body {
-    font-size: 1.6rem;
-    line-height: 1.45;
+    font-size: 4rem;
     color: var(--cream);
-    margin-top: 2rem;
-    max-width: 72ch;
+    margin: 0;
+    padding-bottom: 1rem;
+    border-bottom: 3px solid var(--rust);
+    align-self: flex-start;
   }
-  .body + .body { margin-top: 1.5rem; }
 
-  /* Full-width numbered checklist */
-  .checklist {
-    margin-top: 3rem;
+  /* Subheader — the teaching line under the section header */
+  .subheader {
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 1.5rem;
+    line-height: 1.4;
+    color: var(--cream-dim);
+    margin: 1.5rem 0 0;
+    max-width: 48ch;
+  }
+  .subheader em { color: var(--rust); font-style: normal; font-weight: 600; }
+
+  /* Main body area */
+  .content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 2rem;
+  }
+
+  /* Two-column list: label + note */
+  .two-col-list {
     list-style: none;
     padding: 0;
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 0;
+    margin: 0;
     width: 100%;
-    max-width: 100%;
   }
-  .checklist li {
-    font-size: 1.6rem;
-    line-height: 1.45;
-    padding: 1.1rem 0;
-    border-bottom: 1px solid var(--line);
+  .two-col-list li {
     display: grid;
     grid-template-columns: 20rem 1fr;
     gap: 2.5rem;
     align-items: baseline;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--line);
   }
-  .checklist li:last-child { border-bottom: 0; }
-  .checklist li .label {
+  .two-col-list li:last-child { border-bottom: 0; }
+  .two-col-list li .label {
     font-family: 'Teko', sans-serif;
     font-weight: 600;
-    font-size: 2.2rem;
+    font-size: 2.4rem;
     text-transform: uppercase;
     letter-spacing: 0.005em;
     color: var(--cream);
     line-height: 1;
   }
-  .checklist li .note {
+  .two-col-list li .note {
+    font-size: 1.25rem;
+    line-height: 1.45;
     color: var(--cream-dim);
+  }
+
+  /* Numbered step list */
+  .step-list {
+    list-style: none;
+    counter-reset: step;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+  }
+  .step-list li {
+    counter-increment: step;
+    display: grid;
+    grid-template-columns: 3rem 16rem 1fr;
+    gap: 2rem;
+    align-items: baseline;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .step-list li:last-child { border-bottom: 0; }
+  .step-list li::before {
+    content: counter(step);
+    font-family: 'Teko', sans-serif;
+    font-weight: 700;
+    font-size: 2.8rem;
+    color: var(--rust);
+    line-height: 1;
+  }
+  .step-list li .name {
+    font-family: 'Teko', sans-serif;
+    font-weight: 600;
+    font-size: 2.4rem;
+    text-transform: uppercase;
+    letter-spacing: 0.005em;
+    color: var(--cream);
+    line-height: 1;
+  }
+  .step-list li .desc {
+    font-size: 1.25rem;
+    line-height: 1.45;
+    color: var(--cream-dim);
+  }
+
+  /* Simple bulleted list for slide 4's "how it works" flow */
+  .reveal .flow-list,
+  .reveal .two-col-list,
+  .reveal .step-list {
+    list-style: none !important;
+    padding: 0 !important;
+    margin: 0;
+  }
+  .flow-list {
+    width: 100%;
+    max-width: 52rem;
+  }
+  .flow-list li {
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 1.6rem;
+    line-height: 1.4;
+    padding: 1rem 0 1rem 3rem;
+    position: relative;
+    color: var(--cream);
+    border-bottom: 1px solid var(--line);
+  }
+  .flow-list li:last-child { border-bottom: 0; }
+  .flow-list li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: var(--rust);
+    font-family: 'Teko', sans-serif;
+    font-weight: 700;
+    font-size: 2rem;
+    line-height: 1.1;
+  }
+
+  /* Example-quote grid for the changes slide — now with plain-English examples */
+  .quotes {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem 3rem;
+    width: 100%;
+    max-width: 66rem;
+  }
+  .quotes .q {
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-style: italic;
+    font-size: 1.5rem;
+    line-height: 1.3;
+    color: var(--cream);
+    padding: 0.6rem 0 0.6rem 1.5rem;
+    border-left: 3px solid var(--rust);
+  }
+
+  /* Screenshot */
+  .screenshot-frame {
+    margin: 0 auto;
+    max-height: 62vh;
+    max-width: 100%;
+    display: block;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.55);
+    border: 1px solid var(--line);
+  }
+
+  /* URL card for step-zero */
+  .url-card {
+    margin-top: 2.5rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 1.35rem;
+    letter-spacing: 0.04em;
+    color: var(--cream);
+    padding: 1.25rem 1.75rem;
+    background: rgba(0, 0, 0, 0.35);
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--rust);
+    display: inline-block;
+    word-break: break-all;
   }
 
   /* Footer */
@@ -174,7 +283,7 @@
   .footer .brand img { height: 22px; width: auto; display: block; }
 
   /* Title slide */
-  .title-wrap { text-align: center; }
+  .title-wrap { text-align: center; margin: auto 0; }
   .title-wrap h1 {
     font-size: clamp(12rem, 22vw, 22rem);
     letter-spacing: -0.03em;
@@ -195,87 +304,13 @@
     font-size: 1.1rem;
   }
 
-  /* Numbered steps — full width, two columns on desktop */
-  .steps {
-    list-style: none;
-    padding: 0;
-    margin: 3rem 0 0;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.5rem 4rem;
-    width: 100%;
-  }
-  .steps li {
-    display: grid;
-    grid-template-columns: 4rem 1fr;
-    gap: 1.5rem;
-    padding: 1.25rem 0;
-    border-top: 2px solid var(--rust);
-    align-items: baseline;
-  }
-  .steps li .n {
-    font-family: 'Teko', sans-serif;
-    font-weight: 700;
-    color: var(--rust);
-    font-size: 3rem;
-    line-height: 0.9;
-  }
-  .steps li .what {
-    font-size: 1.3rem;
-    line-height: 1.4;
-    color: var(--cream-dim);
-  }
-  .steps li .what b {
-    font-family: 'Teko', sans-serif;
-    font-weight: 600;
-    font-size: 2rem;
-    letter-spacing: 0.005em;
-    text-transform: uppercase;
-    display: block;
-    margin-bottom: 0.35rem;
-    color: var(--cream);
-  }
-
-  /* Quote grid (for "tell Claude" slide) */
-  .quotes {
-    margin-top: 3rem;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem 3rem;
-    width: 100%;
-  }
-  .quotes .q {
-    font-family: 'Teko', sans-serif;
-    font-weight: 600;
-    font-size: 2.4rem;
-    line-height: 1.1;
-    color: var(--cream);
-    padding: 1.25rem 0 1.25rem 2rem;
-    border-left: 3px solid var(--rust);
-  }
-
-  /* Screenshot frame */
-  .screenshot-frame {
-    margin: 2rem auto 0;
-    max-height: 70vh;
-    max-width: 100%;
-    display: block;
-    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.55);
-    border: 1px solid var(--line);
-  }
-
   /* CTA slide */
-  .cta-wrap { text-align: center; }
+  .cta-wrap { text-align: center; margin: auto 0; }
   .cta-wrap h1 {
-    font-size: clamp(8rem, 15vw, 15rem);
+    font-size: clamp(9rem, 16vw, 16rem);
     letter-spacing: -0.025em;
     line-height: 0.86;
-  }
-  .cta-wrap .sub {
-    font-size: 1.75rem;
     color: var(--ink);
-    margin-top: 2.5rem;
-    font-weight: 500;
   }
   .cta-wrap .cta {
     display: inline-block;
@@ -298,19 +333,6 @@
     margin-top: 2rem;
     word-break: break-all;
   }
-  .cta-wrap .thanks {
-    margin-top: 3rem;
-    font-weight: 500;
-    font-size: 1.1rem;
-    color: rgba(18, 9, 5, 0.65);
-  }
-
-  /* Big centered headline utility for content slides */
-  .headline-row {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
 
   .reveal .progress { color: var(--rust); }
   .reveal .slide-number {
@@ -326,10 +348,10 @@
 <div class="reveal">
   <div class="slides">
 
-    <!-- ==== 1. TITLE ==== -->
+    <!-- 1. TITLE -->
     <section>
       <div class="slide slide--rosewood">
-        <div class="title-wrap" style="margin: auto 0;">
+        <div class="title-wrap">
           <h1>BenchMuse</h1>
           <div class="tagline">Let's build you a website.</div>
           <div class="presenter">Ted Bergstrand</div>
@@ -340,206 +362,229 @@
         </div>
       </div>
       <aside class="notes">
-        Thanks for hanging out. I've been working on something for folks like us, and it's far enough along that I want you to use it.
-        Nothing to buy. Nothing to sign up for. I built this because I hated watching friends either get pushed onto Squarespace or spend four grand on a site they didn't love.
+        Thanks for being here. I made a thing for folks like us and it's ready for you to use. Nothing to buy, nothing to sign up for.
       </aside>
     </section>
 
-    <!-- ==== 2. WHAT YOU'LL END UP WITH ==== -->
+    <!-- 2. WHAT YOU'LL MAKE -->
     <section>
-      <div class="slide slide--rosewood" style="justify-content: flex-start; padding-top: 10vh;">
-        <h3 style="font-family: 'Inter', sans-serif; font-weight: 500; font-size: 1.35rem; text-transform: none; letter-spacing: 0; color: var(--cream-dim); margin: 0 0 1rem;">Here's what you'll end up with.</h3>
-        <img src="./assets/example-site.jpg" alt="Example generated site" class="screenshot-frame" />
+      <div class="slide slide--rosewood">
+        <h2 class="section-header">What you'll make</h2>
+        <div class="subheader">A real website with your photos, your words, your shop. Yours to keep, host anywhere.</div>
+        <div class="content">
+          <img src="./assets/example-site.jpg" alt="Example site" class="screenshot-frame" />
+        </div>
         <div class="footer">
           <span class="brand"><img src="./assets/benchmuse-logo.png" alt="" /> BenchMuse</span>
           <span>02</span>
         </div>
       </div>
       <aside class="notes">
-        This is a real site I built during testing. Yours will look different because yours will come from your photos, your story, your words. No two look the same.
+        This is a real site I built while testing. Yours will look different because yours comes from your photos, your story, your words. No two come out the same.
       </aside>
     </section>
 
-    <!-- ==== 3. WHAT YOU NEED ==== -->
+    <!-- 3. WHAT YOU NEED -->
     <section>
       <div class="slide slide--rosewood">
-        <h2>Nothing fancy.</h2>
-        <ul class="checklist">
-          <li><span class="label">A computer</span><span class="note">Mac or Windows, either one.</span></li>
-          <li><span class="label">Claude Code</span><span class="note">Free to download. $20 a month to use while you're building. Cancel when you're done.</span></li>
-          <li><span class="label">A Netlify account</span><span class="note">Free. Your site will live here.</span></li>
-          <li><span class="label">A few hours on the couch</span><span class="note">You can split it across nights. Claude picks up where you left off.</span></li>
-          <li><span class="label">Around ten photos</span><span class="note">Phone pictures are fine. Don't overthink it.</span></li>
-        </ul>
+        <h2 class="section-header">What you'll need</h2>
+        <div class="subheader">Four things. I'll drop links in the chat for anything you don't have.</div>
+        <div class="content">
+          <ul class="two-col-list">
+            <li>
+              <span class="label">A computer</span>
+              <span class="note">Mac or Windows. Either works.</span>
+            </li>
+            <li>
+              <span class="label">Claude Code</span>
+              <span class="note">The AI you'll be talking to. Free app; a subscription while you're building.</span>
+            </li>
+            <li>
+              <span class="label">A Netlify account</span>
+              <span class="note">Free. It's where your site will live once it's done.</span>
+            </li>
+            <li>
+              <span class="label">Some photos</span>
+              <span class="note">Phone pictures are fine. Of your bench, your instruments, you at work.</span>
+            </li>
+          </ul>
+        </div>
         <div class="footer">
           <span class="brand"><img src="./assets/benchmuse-logo.png" alt="" /> BenchMuse</span>
           <span>03</span>
         </div>
       </div>
       <aside class="notes">
-        Links to Claude and Netlify will be in the chat. Both take two minutes to sign up for.
-        The only thing that costs money is Claude: twenty bucks for the month you're building. Cancel it. Re-subscribe only when you want to make changes.
+        You probably already have a computer and a phone full of shop photos. Claude and Netlify each take a couple minutes to set up. I'll walk anyone through that after.
       </aside>
     </section>
 
-    <!-- ==== 4. HOW IT WORKS ==== -->
+    <!-- 4. HOW IT WORKS -->
     <section>
-      <div class="slide slide--rosewood slide--centered">
-        <h2 style="font-size: 8rem;">You answer<br/>questions.</h2>
-        <p class="body" style="text-align: center; max-width: 48ch; margin-top: 3rem;">
-          Claude asks about your shop: what you do, what you charge, your story. You type back whatever comes to mind. Claude turns your answers into a site.
-        </p>
-        <p class="body" style="text-align: center; max-width: 48ch; margin-top: 1rem; font-size: 1.3rem; color: var(--cream-dim);">
-          No HTML. No design software. No template pickers.
-        </p>
+      <div class="slide slide--rosewood">
+        <h2 class="section-header">How it works</h2>
+        <div class="subheader">You don't write code. You don't pick templates. You just talk to Claude, and Claude builds.</div>
+        <div class="content">
+          <ul class="flow-list">
+            <li>Claude asks questions about your shop</li>
+            <li>You answer in your own words</li>
+            <li>Claude builds a site from what you said</li>
+            <li>You tell Claude what to change until you like it</li>
+            <li>You publish it</li>
+          </ul>
+        </div>
         <div class="footer">
           <span class="brand"><img src="./assets/benchmuse-logo.png" alt="" /> BenchMuse</span>
           <span>04</span>
         </div>
       </div>
       <aside class="notes">
-        The "AI builds your website" phrase makes people picture some sci-fi process. What's actually happening: you're typing in a chat window. The AI reads your answers and writes the site.
-        The closest comparison I can give you is having a web designer on a long text thread, except they reply instantly and they're patient about everything.
+        The part that trips people up is imagining what "AI builds your website" actually looks like. It looks like a chat window. You type things into it. That's it.
+        Think less sci-fi, more text-message-with-a-very-patient-designer.
       </aside>
     </section>
 
-    <!-- ==== 5. FIVE STEPS ==== -->
+    <!-- 5. THE FIVE STEPS -->
     <section>
       <div class="slide slide--rosewood">
-        <h2>The five steps.</h2>
-        <ol class="steps">
-          <li>
-            <span class="n">1</span>
-            <span class="what"><b>Interview</b>Claude asks about your shop. Around 20 minutes.</span>
-          </li>
-          <li>
-            <span class="n">2</span>
-            <span class="what"><b>Design direction</b>Claude looks at your photos, picks colors and fonts, shows you the plan.</span>
-          </li>
-          <li>
-            <span class="n">3</span>
-            <span class="what"><b>Photos</b>Claude sorts them, shrinks them, writes descriptions.</span>
-          </li>
-          <li>
-            <span class="n">4</span>
-            <span class="what"><b>Build</b>Claude writes the site. You see it live in your browser.</span>
-          </li>
-          <li>
-            <span class="n">5</span>
-            <span class="what"><b>SEO</b>Claude adds the pieces Google looks for.</span>
-          </li>
-        </ol>
+        <h2 class="section-header">The five steps</h2>
+        <div class="subheader">Each one takes as long as it takes. You can stop between any of them and come back whenever.</div>
+        <div class="content">
+          <ol class="step-list">
+            <li>
+              <span class="name">Interview</span>
+              <span class="desc">Claude asks about your shop, your services, your story.</span>
+            </li>
+            <li>
+              <span class="name">Design</span>
+              <span class="desc">Claude looks at your photos and picks colors and fonts that fit your shop.</span>
+            </li>
+            <li>
+              <span class="name">Photos</span>
+              <span class="desc">Claude sorts your photos, shrinks them, and writes descriptions.</span>
+            </li>
+            <li>
+              <span class="name">Build</span>
+              <span class="desc">Claude writes the site. You see it live in your browser.</span>
+            </li>
+            <li>
+              <span class="name">Getting found</span>
+              <span class="desc">Claude adds the pieces that help Google point people to your shop.</span>
+            </li>
+          </ol>
+        </div>
         <div class="footer">
           <span class="brand"><img src="./assets/benchmuse-logo.png" alt="" /> BenchMuse</span>
           <span>05</span>
         </div>
       </div>
       <aside class="notes">
-        You do these one at a time. Each takes between five and thirty minutes. You can stop after any step and come back later. Claude remembers where you were.
-        You start each step by typing a single word. I'll show you the exact words in a second.
+        You start each step by typing one short command. I'll show you the exact thing to type at the end.
+        Claude remembers where you left off between sessions. Nothing is lost if you close the laptop and come back later.
       </aside>
     </section>
 
-    <!-- ==== 6. PHOTOS ==== -->
+    <!-- 6. PHOTOS -->
     <section>
-      <div class="slide slide--rosewood slide--centered">
-        <h2 style="font-size: 9rem;">iPhone is fine.</h2>
-        <p class="body" style="text-align: center; max-width: 52ch; margin-top: 3rem;">
-          Ten or fifteen will do it. Your bench. A couple of guitars you like. One or two of you at work. A shot of the shop. No photographer needed.
-        </p>
-        <p class="body" style="text-align: center; max-width: 52ch; margin-top: 1rem; font-size: 1.3rem; color: var(--cream-dim);">
-          If you don't have photos yet, Claude uses licensed placeholders and you swap them in later.
-        </p>
+      <div class="slide slide--rosewood">
+        <h2 class="section-header">About your photos</h2>
+        <div class="subheader">Don't stress about this part. Phone pictures are fine. A handful is enough.</div>
+        <div class="content">
+          <ul class="two-col-list">
+            <li><span class="label">Your bench</span><span class="note">The workspace itself. Something that shows how you work.</span></li>
+            <li><span class="label">A few instruments</span><span class="note">Ones you're proud of. Finished or in progress, your call.</span></li>
+            <li><span class="label">You working</span><span class="note">Candid is fine. Doesn't need to be posed.</span></li>
+            <li><span class="label">The shop</span><span class="note">Inside, outside, your sign, whatever gives a sense of the place.</span></li>
+          </ul>
+        </div>
         <div class="footer">
           <span class="brand"><img src="./assets/benchmuse-logo.png" alt="" /> BenchMuse</span>
           <span>06</span>
         </div>
       </div>
       <aside class="notes">
-        Do not hire a photographer for this. Phone photos look great on the web. Good light, reasonable framing, you're set.
-        If you have nothing, use placeholders. Swap in real photos later. Your site doesn't have to be perfect on day one.
+        If you have no photos at all when you're ready to build, Claude will use stand-ins. You can swap in your real ones whenever they arrive. Nothing is blocked by "I don't have the right pictures yet."
       </aside>
     </section>
 
-    <!-- ==== 7. WHEN YOU DON'T LIKE IT ==== -->
+    <!-- 7. CHANGES -->
     <section>
       <div class="slide slide--rosewood">
-        <h2>You tell Claude.<br/>Claude fixes it.</h2>
-        <div class="quotes">
-          <div class="q">"Make the hero smaller."</div>
-          <div class="q">"This green looks muddy."</div>
-          <div class="q">"I hate this font."</div>
-          <div class="q">"Add a page for my YouTube."</div>
+        <h2 class="section-header">When you want changes</h2>
+        <div class="subheader">You tell Claude what's off. Plain English works. No technical terms, no menus to hunt through.</div>
+        <div class="content">
+          <div class="quotes">
+            <div class="q">"The top photo is too big."</div>
+            <div class="q">"This color looks off to me."</div>
+            <div class="q">"I don't like this font."</div>
+            <div class="q">"Can you add a page for my videos?"</div>
+          </div>
         </div>
-        <p class="body" style="margin-top: 2.5rem; font-size: 1.3rem; color: var(--cream-dim); max-width: 60ch;">
-          Plain English works. Claude rebuilds whatever part you pointed at and shows you the new version. Try as many times as you want.
-        </p>
         <div class="footer">
           <span class="brand"><img src="./assets/benchmuse-logo.png" alt="" /> BenchMuse</span>
           <span>07</span>
         </div>
       </div>
       <aside class="notes">
-        You don't need the technical vocabulary. "I don't like the vibe" is a valid instruction. Claude figures out what you mean and tries again.
-        Don't be precious about getting it right the first time. The whole thing is built for iteration.
+        You don't need to know what anything's called. "I don't like the vibe" is a valid instruction. Claude figures out what you mean and tries again. Go back and forth as many times as you want.
       </aside>
     </section>
 
-    <!-- ==== 8. DEPLOY ==== -->
+    <!-- 8. GOING LIVE -->
     <section>
-      <div class="slide slide--rosewood slide--centered">
-        <h2 style="font-size: 9rem;">Drag a folder.</h2>
-        <p class="body" style="text-align: center; max-width: 52ch; margin-top: 3rem;">
-          When Claude is done, your site is a folder on your computer. You open Netlify in your browser and drag the folder onto the page. Your site is live.
-        </p>
-        <p class="body" style="text-align: center; max-width: 52ch; margin-top: 1rem; font-size: 1.3rem; color: var(--cream-dim);">
-          Took me around forty seconds the first time I tried it.
-        </p>
+      <div class="slide slide--rosewood">
+        <h2 class="section-header">Putting it online</h2>
+        <div class="subheader">One drag-and-drop and your site is live on the internet. That's the whole process.</div>
+        <div class="content">
+          <ul class="flow-list">
+            <li>Open Netlify in your browser</li>
+            <li>Drag your website folder onto their upload page</li>
+            <li>Your site is live at a free Netlify web address</li>
+            <li>Point your own domain at it whenever you're ready</li>
+          </ul>
+        </div>
         <div class="footer">
           <span class="brand"><img src="./assets/benchmuse-logo.png" alt="" /> BenchMuse</span>
           <span>08</span>
         </div>
       </div>
       <aside class="notes">
-        Netlify's upload page is one big rectangle that says "drag your folder here." If you can drag a file into an email, you can deploy a website.
-        Netlify also handles HTTPS (the lock icon) automatically. You don't need to think about it.
+        Netlify's upload page is one big rectangle that says "drag your folder here." If you can drag a file into an email, you can publish a website.
+        The free Netlify address looks like yourname.netlify.app. Good enough forever if you want. A domain like yourshop.com is about fifteen bucks a year and takes two clicks to connect.
       </aside>
     </section>
 
-    <!-- ==== 9. STEP ZERO ==== -->
+    <!-- 9. STEP ZERO -->
     <section>
       <div class="slide slide--rosewood">
-        <h2>Grab the ZIP.</h2>
-        <p class="body">
-          On the next slide is a link to a page with a green <em>Code</em> button. Click it. Choose <em>Download ZIP</em>. Unzip the folder and put it somewhere you'll remember (Desktop is fine).
-        </p>
-        <p class="body" style="font-size: 1.3rem; color: var(--cream-dim); margin-top: 2rem;">
-          If you want easier updates later, there's a GitHub Desktop option. Start with the ZIP.
-        </p>
+        <h2 class="section-header">Getting started</h2>
+        <div class="subheader">Grab the starter files from this link. Unzip the folder, put it on your Desktop, and open it in Claude Code.</div>
+        <div class="content">
+          <div class="url-card">github.com/tedbergstrand/benchmuse-website-builder-skills</div>
+          <p style="font-family: 'Inter'; font-size: 1.2rem; color: var(--cream-dim); margin-top: 2rem; max-width: 52ch; line-height: 1.45;">
+            Click the green <em style="color: var(--rust); font-style: normal; font-weight: 600;">Code</em> button on that page, then choose <em style="color: var(--rust); font-style: normal; font-weight: 600;">Download ZIP</em>.
+          </p>
+        </div>
         <div class="footer">
           <span class="brand"><img src="./assets/benchmuse-logo.png" alt="" /> BenchMuse</span>
           <span>09</span>
         </div>
       </div>
       <aside class="notes">
-        GitHub sounds technical, but for your purposes it's just a page with a download button. You don't need an account to download the ZIP.
-        Once the folder is on your Desktop, open it in Claude Code. The first thing you type is: /luthier-interviewer.
+        Don't worry about GitHub as a concept. For your purposes it's a page with a download button. You don't need an account to grab the ZIP.
+        Once you've opened the folder in Claude Code, the very first thing you type in the chat is slash-luthier-interviewer.
       </aside>
     </section>
 
-    <!-- ==== 10. LET'S DO THIS ==== -->
+    <!-- 10. LET'S DO THIS -->
     <section>
       <div class="slide slide--spruce">
-        <div class="cta-wrap" style="margin: auto 0;">
+        <div class="cta-wrap">
           <h1>Let's do this.</h1>
-          <p class="sub">
-            Grab the files. Open them in Claude Code. Say hi.
-          </p>
-          <div style="margin-top: 2rem;">
+          <div style="margin-top: 2.5rem;">
             <a class="cta" href="https://github.com/tedbergstrand/benchmuse-website-builder-skills">Grab the files →</a>
           </div>
           <div class="url">github.com/tedbergstrand/benchmuse-website-builder-skills</div>
-          <div class="thanks">Text me if you get stuck. Happy to help.</div>
         </div>
         <div class="footer">
           <span class="brand">BenchMuse</span>
@@ -547,7 +592,7 @@
         </div>
       </div>
       <aside class="notes">
-        Questions? I'll stick around after we wrap. Most of you can knock out a first version in one evening. When you get stuck (everyone gets stuck at least once), hit me up in the group chat. I'd rather answer the same question five times than have any of you give up on the thing.
+        Questions? I'll stick around. When you get stuck, text me. I'd rather answer the same thing five times than have anyone give up.
       </aside>
     </section>
 
