@@ -18,7 +18,7 @@ No programming experience required.
 
 ## Quick Start
 
-1. Download this toolkit and open the folder in Claude Code
+1. Get the toolkit onto your computer — see [Getting the toolkit](#getting-the-toolkit) below, or `docs/getting-started.md` for more detail. Then open the folder in Claude Code.
 2. Gather your materials — at minimum 5 photos, your services/prices, and contact info (see `docs/what-to-prepare.md`)
 3. Type `/luthier-interviewer` — answer Claude's questions about your business (~15 min)
 4. Drop your photos into the project folder
@@ -51,6 +51,42 @@ Claude updates your site. You drag the folder to Netlify again. Done.
 | `templates/` | Starter files (profile template, hosting config, pipeline tracker) |
 | `benchmuse/` | BenchMuse brand assets (logo variants used in the "Built with BenchMuse" footer attribution) |
 | `schemas/` | Technical spec for your profile data |
+
+## Getting the toolkit
+
+Three ways to get the files onto your computer. Pick the one you're most comfortable with — they all end up in the same place.
+
+### Option A — Download as a ZIP (easiest, no account needed)
+
+1. On this GitHub page, click the green **`< > Code`** button near the top of the file list.
+2. Click **`Download ZIP`** at the bottom of the menu that appears.
+3. Open the ZIP from your Downloads folder — it will unzip into a folder named `benchmuse-website-builder-skills-main`.
+4. Drag that folder somewhere findable like your **Documents** or **Desktop**. You can rename it to something shorter if you want (e.g., `luthier-web-toolkit`).
+
+**Getting updates later:** You'll need to re-download the ZIP and copy your personal files (`luthier-profile.json`, `pipeline-status.json`, the `handoffs/` folder, and your `website/` folder) from the old copy into the new one. Not elegant but it works. If you want painless updates, use Option B instead.
+
+### Option B — GitHub Desktop (friendly GUI, easy updates)
+
+If you want the one-click "check for updates" experience without learning the command line:
+
+1. Install **GitHub Desktop** from [desktop.github.com](https://desktop.github.com).
+2. Sign in with a free GitHub account (create one if you don't have one).
+3. In GitHub Desktop: **File → Clone Repository → URL tab**, and paste:
+   ```
+   https://github.com/tedbergstrand/benchmuse-website-builder-skills
+   ```
+4. Choose where to save it (Documents is fine), click **Clone**.
+
+**Getting updates later:** Open GitHub Desktop, click **`Fetch origin`** then **`Pull`**. Your personal files stay untouched because they're listed in `.gitignore`.
+
+### Option C — Git on the command line (for the technical)
+
+```bash
+git clone https://github.com/tedbergstrand/benchmuse-website-builder-skills.git
+cd benchmuse-website-builder-skills
+```
+
+Updates: `git pull` from inside the folder.
 
 ## Guides
 

@@ -13,9 +13,50 @@ Claude Code is the AI assistant that builds your site. You talk to it, it writes
 
 You'll need a Claude Pro ($20/month) or Max ($100/month) subscription to use Claude Code. Pro is enough for most sites. You only need the subscription while actively building or updating — cancel anytime between. Sign up at [claude.ai](https://claude.ai).
 
-## Step 2: Download This Toolkit
+## Step 2: Get This Toolkit Onto Your Computer
 
-Download the toolkit folder to your computer. Put it somewhere easy to find — your Desktop or Documents folder works fine.
+You need the toolkit files living in a folder on your machine. There are three ways to do this. Pick whichever sounds least scary — they all end up with the same files.
+
+### The easiest way: download a ZIP (no account needed)
+
+1. Go to the toolkit's GitHub page: **[github.com/tedbergstrand/benchmuse-website-builder-skills](https://github.com/tedbergstrand/benchmuse-website-builder-skills)**
+2. Look for a **green `< > Code` button** near the top of the file list. Click it.
+3. A small menu appears. Click **`Download ZIP`** at the bottom.
+4. The ZIP downloads to your Downloads folder. Double-click it to unzip — you'll get a folder called something like `benchmuse-website-builder-skills-main`.
+5. Drag that folder somewhere you'll remember — your **Desktop** or **Documents** folder is perfect. You can rename it to something friendlier like `my-website-toolkit` if you want.
+
+That's it. Skip to Step 3.
+
+**Heads up about updates:** If the BenchMuse toolkit gets improvements later, you'll need to download the newest ZIP and copy your personal files (your `luthier-profile.json`, the `handoffs/` folder, your `website/` folder) from the old copy into the new one. It works but it's a little fiddly. If you want painless updates, the next method is better.
+
+### The friendly-GUI way: GitHub Desktop
+
+GitHub Desktop is a free app that makes it easy to keep the toolkit updated with one click. No command line, no typing commands. Recommended if you think you'll update the toolkit more than once.
+
+1. Go to **[desktop.github.com](https://desktop.github.com)** and download GitHub Desktop for your operating system.
+2. Install and open it.
+3. It'll ask you to sign in with a **GitHub account** — create one if you don't have one. It's free and takes 30 seconds.
+4. Once signed in, go to **File → Clone Repository → URL**.
+5. In the URL field, paste this:
+   ```
+   https://github.com/tedbergstrand/benchmuse-website-builder-skills
+   ```
+6. Choose where to save the folder (your **Documents** folder is fine), then click **Clone**.
+
+You now have the toolkit on your machine.
+
+**Getting updates later:** When there's a newer version, open GitHub Desktop, click **`Fetch origin`** (top of the window), then **`Pull origin`**. Your personal data stays put — only the BenchMuse files update.
+
+### The command-line way (if that's already your thing)
+
+If you're comfortable with a terminal:
+
+```bash
+git clone https://github.com/tedbergstrand/benchmuse-website-builder-skills.git
+cd benchmuse-website-builder-skills
+```
+
+Update with `git pull` from inside the folder.
 
 ## Step 3: Open the Toolkit in Claude Code
 
