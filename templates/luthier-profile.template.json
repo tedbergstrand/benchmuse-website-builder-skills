@@ -1,0 +1,59 @@
+{
+  "identity": {
+    "businessName": "",
+    "ownerName": "",
+    "location": "City, State",
+    "profileType": "repair | builder | hybrid",
+    "specialty": "e.g., Vintage guitar restoration, Custom acoustic building",
+    "story": "Your background — why you started, who you trained under, what drives you",
+    "phone": "",
+    "phoneCTA": true,
+    "socials": {
+      "instagram": "",
+      "facebook": "",
+      "bluesky": "",
+      "website": ""
+    },
+    "affiliations": [],
+    "authorizedDealerFor": []
+  },
+
+  "services": {
+    "example_category": {
+      "name": "Service Category Name",
+      "description": "What this service involves",
+      "starting_price": "$XX and up"
+    }
+  },
+
+  "policies": {
+    "appointments": "How customers book — appointment only, walk-in, online form, etc.",
+    "dropIn": "Walk-in policy",
+    "hours": "e.g., Mon-Fri 9am-5pm, or By Appointment",
+    "payment": "Payment methods and expectations",
+    "warranty": "Your guarantee/warranty policy",
+    "leadTime": "Typical turnaround time",
+    "communication": "How you prefer customers contact you"
+  },
+
+  "design_tokens": {},
+  "design_brief": {},
+
+  "testimonials": [
+    {
+      "author": "Customer Name or Initials",
+      "text": "What they said about your work"
+    }
+  ],
+
+  "site_architecture": {
+    "page_map": [],
+    "site_structure": "single-page-scroll | multi-page"
+  },
+
+  "metadata": {
+    "data_sources": ["luthier interview"],
+    "created_date": "",
+    "stale_data_flags": []
+  }
+}

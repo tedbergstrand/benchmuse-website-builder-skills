@@ -1,0 +1,37 @@
+{
+  "steps": {
+    "interviewer": {
+      "status": "not_started",
+      "completed_at": null,
+      "artifacts": ["luthier-profile.json", "pipeline-status.json"]
+    },
+    "visual_vibe_translator": {
+      "status": "not_started",
+      "completed_at": null,
+      "artifacts": ["design_brief in luthier-profile.json", "design_tokens in luthier-profile.json"]
+    },
+    "workbench_curator": {
+      "status": "not_started",
+      "completed_at": null,
+      "artifacts": ["website/assets/"],
+      "notes": null
+    },
+    "site_builder": {
+      "status": "not_started",
+      "completed_at": null,
+      "artifacts": ["website/"],
+      "stack": null,
+      "notes": null
+    },
+    "local_footprint_optimizer": {
+      "status": "not_started",
+      "completed_at": null,
+      "artifacts": ["sitemap.xml", "robots.txt", "llms.txt", "schema JSON-LD"],
+      "notes": null
+    }
+  },
+  "deployed": false,
+  "deployed_at": null,
+  "deploy_url": null,
+  "last_updated": null
+}
