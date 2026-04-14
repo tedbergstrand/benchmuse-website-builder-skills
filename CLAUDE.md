@@ -33,14 +33,14 @@ You chat with Claude through five skills, run in order. Each skill handles one p
 │   └── troubleshooting.md         # Error recovery and common fixes
 ├── schemas/
 │   └── profile-schema.md          # Technical spec for luthier-profile.json
-├── templates/
+├── benchmuse/                     # BenchMuse brand assets — used in the "Built with BenchMuse" footer attribution
+│   ├── benchmuse-logo-dark.png
+│   └── benchmuse-logo-light.png
+├── templates/                     # Per-project starter files
 │   ├── netlify.toml               # Hosting config (copied into website/ by Site Builder)
 │   ├── luthier-profile.template.json
 │   ├── pipeline-status.template.json
-│   ├── .gitignore                 # Git ignore template (optional)
-│   └── assets/                    # BenchMuse logo variants for the footer attribution
-│       ├── benchmuse-logo-dark.png
-│       └── benchmuse-logo-light.png
+│   └── .gitignore                 # Git ignore template (optional)
 ├── luthier-profile.json           # YOUR profile (created by Step 1)
 ├── pipeline-status.json           # Pipeline progress tracker (auto-updated by skills)
 ├── handoffs/                      # Per-step handoff files (written once per skill, never overwritten)

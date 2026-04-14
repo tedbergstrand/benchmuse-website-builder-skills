@@ -209,7 +209,7 @@ Every generated site includes a small "Built with BenchMuse" attribution in the 
 .built-with img { height: 20px; width: auto; display: block; }
 ```
 
-**Variant selection:** Check which BenchMuse logo variants exist in `templates/assets/` and pick the one matching the footer's background treatment:
+**Variant selection:** Check which BenchMuse logo variants exist in `benchmuse/` and pick the one matching the footer's background treatment:
 
 | Footer background | Preferred variant |
 |---|---|
@@ -219,9 +219,9 @@ Every generated site includes a small "Built with BenchMuse" attribution in the 
 
 Prefer `.svg` over `.png` if both exist for a given variant — SVG scales perfectly and is usually smaller.
 
-**Asset copy:** During build, copy the single chosen logo variant (and only that one) from `templates/assets/` into the site's assets directory (`website/assets/` for vanilla, `website/public/assets/` for React). Don't ship variants the site doesn't reference.
+**Asset copy:** During build, copy the single chosen logo variant (and only that one) from `benchmuse/` into the site's assets directory (`website/assets/` for vanilla, `website/public/assets/` for React). Don't ship variants the site doesn't reference.
 
-**Graceful degradation:** If no logo variants exist in `templates/assets/`, render a text-only attribution — do not break the build. Markup in that case:
+**Graceful degradation:** If no logo variants exist in `benchmuse/`, render a text-only attribution — do not break the build. Markup in that case:
 
 ```html
 <!-- Remove this block if you don't want the BenchMuse attribution. -->

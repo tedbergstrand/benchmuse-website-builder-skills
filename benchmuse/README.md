@@ -1,6 +1,8 @@
-# Logo Assets
+# BenchMuse Brand Assets
 
-The Site Builder copies logo variants from this directory into each generated site's `assets/` folder for use in the footer attribution.
+Logo files used in the "Built with BenchMuse" footer attribution on every generated site. The Site Builder copies the appropriate variant into each site's `assets/` directory during build.
+
+This directory holds BenchMuse's own brand identity — it is separate from `templates/` (per-project starter files a luthier customizes) and from any `brand/` directory a luthier might create for their own business assets.
 
 ## Expected Files
 

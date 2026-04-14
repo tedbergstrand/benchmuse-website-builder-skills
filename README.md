@@ -48,7 +48,8 @@ Claude updates your site. You drag the folder to Netlify again. Done.
 |---|---|
 | `.claude/skills/` | The 5 AI skills that build your site |
 | `docs/` | Setup guides, FAQ, troubleshooting, and help |
-| `templates/` | Starter files (profile template, hosting config, pipeline tracker, BenchMuse logo assets) |
+| `templates/` | Starter files (profile template, hosting config, pipeline tracker) |
+| `benchmuse/` | BenchMuse brand assets (logo variants used in the "Built with BenchMuse" footer attribution) |
 | `schemas/` | Technical spec for your profile data |
 
 ## Guides
